@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сообщения</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Сообщения</h1>
+  <form id="room-form">
+    <label for="room">Комната</label>
+    <input id="room" name="room" value="room-id" autocomplete="off">
+    <button type="submit">Открыть</button>
+  </form>
+  <p id="auth">
+    <a id="login" href="#" hidden>Войти через Яндекс ID</a>
+    <span id="user" hidden></span>
+    <button id="logout" type="button" hidden>Выйти</button>
+  </p>
+</header>
+
+<main>
+  <p id="status" role="status">Загрузка…</p>
+  <ol id="messages" reversed></ol>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

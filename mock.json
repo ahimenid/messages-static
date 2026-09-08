@@ -1,0 +1,25 @@
+{
+  "messages": [
+    {
+      "key": "room-id/2026-09-08T09:12:04Z-1f0c.json",
+      "timestamp": "2026-09-08T09:12:04Z",
+      "source": "backup-agent",
+      "level": "info",
+      "text": "Ночной бэкап завершён: 4.2 ГБ, 00:41."
+    },
+    {
+      "key": "room-id/2026-09-08T11:03:47Z-8a21.json",
+      "timestamp": "2026-09-08T11:03:47Z",
+      "source": "billing",
+      "level": "warning",
+      "text": "Расход за сутки выше среднего на 38%."
+    },
+    {
+      "key": "room-id/2026-09-08T13:55:10Z-b7de.json",
+      "timestamp": "2026-09-08T13:55:10Z",
+      "source": "healthcheck",
+      "level": "error",
+      "text": "api.example.com отвечает 502 третью минуту подряд."
+    }
+  ]
+}

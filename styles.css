@@ -1,0 +1,35 @@
+:root { color-scheme: light dark; }
+
+body {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 48rem;
+  font: 16px/1.5 system-ui, sans-serif;
+}
+
+h1 { font-size: 1.25rem; margin: 0 0 .5rem; }
+
+header { border-bottom: 1px solid #8884; padding-bottom: .75rem; }
+
+#room-form { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+
+#auth { margin: .75rem 0 0; }
+
+#status { color: #888; }
+
+#messages { list-style: none; margin: 1rem 0; padding: 0; }
+
+#messages li {
+  border: 1px solid #8884;
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+  margin-bottom: .5rem;
+}
+
+#messages li[data-level="error"] { border-color: #d33; }
+#messages li[data-level="warning"] { border-color: #e90; }
+
+.meta { display: flex; gap: .5rem; font-size: .8rem; color: #888; }
+.meta .source { font-weight: 600; color: inherit; }
+
+.text { margin: .25rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
