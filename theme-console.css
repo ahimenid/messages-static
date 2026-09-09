@@ -1,0 +1,56 @@
+/* Вариант B — тёмный дашборд: плотная лента, бейджи уровня, моноширинный источник. */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #0f1115;
+  --card: #171a20;
+  --ink: #dfe3ea;
+  --muted: #8b93a3;
+  --line: #262b34;
+  --accent: #58a6ff;
+  --info: #7d8697;
+  --warning: #e3a008;
+  --error: #f04747;
+  --ok: #35c46a;
+  --radius: .375rem;
+}
+
+body { max-width: 76rem; }
+
+header { padding-bottom: .625rem; }
+h1 { font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+
+#logout, #open-settings { border-radius: var(--radius); }
+
+#messages li {
+  border-radius: var(--radius);
+  padding: .4375rem .75rem .5rem 1rem;
+  margin-bottom: .25rem;
+}
+
+#messages li::before { width: 2px; }
+
+.meta { font-size: .75rem; }
+.meta .source { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-weight: 500; }
+
+/* Уровень — залитый бейдж, а не контур. */
+.level {
+  border: 0;
+  border-radius: .1875rem;
+  padding: .0625rem .375rem;
+  font-size: .6875rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #0f1115;
+  background: var(--info);
+}
+
+[data-level="warning"] .level { background: var(--warning); color: #0f1115; }
+[data-level="error"] .level,
+[data-level="critical"] .level { background: var(--error); color: #fff; }
+[data-level="critical"] .level { box-shadow: 0 0 0 1px #fff4 inset; }
+
+.text { font-size: .9375rem; }
+
+#messages li[data-resolved] { opacity: .72; }

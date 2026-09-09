@@ -1,0 +1,76 @@
+/* Вариант C — таблица: время | уровень | источник | текст, максимум строк на экран. */
+
+:root { --radius: .25rem; }
+
+body { max-width: 84rem; }
+
+#messages {
+  margin: .75rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+}
+
+#messages li {
+  display: grid;
+  grid-template-columns: 11rem 5.5rem 10rem 1fr auto;
+  gap: 0 .75rem;
+  align-items: baseline;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  margin: 0;
+  padding: .3125rem .75rem .3125rem 1rem;
+}
+
+#messages li:first-child { border-top: 0; }
+#messages li:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+#messages li::before { width: 3px; }
+
+/* Метаданные раскладываются по колонкам таблицы, текст занимает последнюю. */
+.meta { display: contents; }
+.meta > *, .text { grid-row: 1; }
+
+.meta time {
+  grid-column: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.level {
+  grid-column: 2;
+  justify-self: start;
+  border-radius: var(--radius);
+  border-width: 1px;
+  font-size: .6875rem;
+  text-transform: uppercase;
+}
+
+.meta .source {
+  grid-column: 3;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: .8125rem;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text {
+  grid-column: 4;
+  margin: 0;
+  font-size: .875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta .resolved { grid-column: 5; justify-self: end; margin: 0; font-size: .8125rem; }
+
+/* На узком экране таблица не помещается — возвращаемся к строкам. */
+@media (max-width: 60rem) {
+  #messages li { display: block; }
+  .meta { display: flex; flex-wrap: wrap; }
+  .meta time { order: -1; }
+  .text { white-space: pre-wrap; }
+}

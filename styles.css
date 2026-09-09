@@ -1,54 +1,174 @@
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+
+  --bg: #f6f7f9;
+  --card: #fff;
+  --ink: #16181d;
+  --muted: #6b7280;
+  --line: #e3e6eb;
+  --accent: #2f6feb;
+  --info: #7a8598;
+  --warning: #d98207;
+  --error: #d94141;
+  --ok: #1f9d55;
+  --radius: .625rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --card: #1c1f25;
+    --ink: #e8eaee;
+    --muted: #9aa2b1;
+    --line: #2a2f38;
+    --accent: #6f9bff;
+    --info: #8b94a5;
+  }
+}
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0 auto;
   padding: 1rem;
   max-width: 64rem;
+  background: var(--bg);
+  color: var(--ink);
   font: 16px/1.5 system-ui, sans-serif;
 }
 
-h1 { font-size: 1.25rem; margin: 0; }
-h2 { font-size: 1rem; margin: 0 0 .5rem; }
+h1 { font-size: 1.2rem; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: 1rem; margin: 0 0 .75rem; }
 
 header {
   display: flex;
-  gap: 1rem;
-  align-items: baseline;
+  gap: .75rem;
+  align-items: center;
   flex-wrap: wrap;
-  border-bottom: 1px solid #8884;
-  padding-bottom: .75rem;
+  padding-bottom: .875rem;
+  border-bottom: 1px solid var(--line);
 }
 
-#auth { margin: 0; margin-left: auto; }
+#auth { display: flex; gap: .5rem; align-items: center; margin: 0 0 0 auto; }
+#user { color: var(--muted); font-size: .875rem; }
 
-#settings p { margin: 0 0 .75rem; }
-#settings label { display: block; }
-#settings select { width: 100%; }
-#settings-scope { font-size: .8rem; color: #888; }
+/* Кнопки */
 
-#status { color: #888; }
+button, select {
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: .375rem .75rem;
+  cursor: pointer;
+}
+
+button { display: inline-flex; gap: .375rem; align-items: center; }
+button:hover, select:hover { border-color: var(--accent); }
+button:active { transform: translateY(1px); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Иконка вместо подписи там, где смысл понятен из иконки. */
+#logout .label, #open-settings .label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+#logout, #open-settings { padding: .375rem; border-radius: 50%; }
+
+a { color: var(--accent); }
+
+/* Настройки */
+
+#settings {
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+#settings::backdrop { background: #0006; }
+#settings p { margin: 0 0 .875rem; }
+#settings label { display: block; font-size: .875rem; color: var(--muted); }
+#settings select { width: 100%; margin-top: .25rem; }
+#settings input[type="checkbox"] { accent-color: var(--accent); margin-right: .375rem; }
+#settings label:has(input) { color: var(--ink); }
+#settings-scope { font-size: .8rem; color: var(--muted); }
+
+/* Лента */
+
+#status { color: var(--muted); font-size: .875rem; }
 
 #messages { list-style: none; margin: 1rem 0; padding: 0; }
 
 #messages li {
-  border: 1px solid #8884;
-  border-radius: .5rem;
-  padding: .5rem .75rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: .625rem .875rem .75rem;
   margin-bottom: .5rem;
 }
 
-#messages li[data-level="warning"] { border-color: #e90; }
-#messages li[data-level="error"],
-#messages li[data-level="critical"] { border-color: #d33; }
-#messages li[data-resolved] { border-color: #2a2; }
+/* Цветная полоса слева вместо цветной рамки вокруг всей карточки. */
+#messages li::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--info);
+}
 
-.meta { display: flex; gap: .5rem; align-items: baseline; font-size: .8rem; color: #888; }
-.meta .source { font-weight: 600; color: inherit; }
-.meta .resolved { margin-left: auto; color: #2a2; }
+#messages li[data-level="warning"]::before { background: var(--warning); }
+#messages li[data-level="error"]::before,
+#messages li[data-level="critical"]::before { background: var(--error); }
+#messages li[data-resolved]::before { background: var(--ok); }
 
-.text { margin: .25rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.meta {
+  display: flex;
+  gap: .5rem;
+  align-items: baseline;
+  margin: 0;
+  font-size: .8125rem;
+  color: var(--muted);
+}
 
-#more { display: block; width: 100%; padding: .5rem; }
+.meta .source { font-weight: 600; color: var(--ink); }
+
+.level {
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  padding: 0 .5rem;
+  font-size: .75rem;
+  color: var(--info);
+}
+
+[data-level="warning"] .level { color: var(--warning); }
+[data-level="error"] .level,
+[data-level="critical"] .level { color: var(--error); }
+
+.meta .resolved { margin-left: auto; color: var(--ok); }
+
+.text { margin: .375rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+#more { display: block; width: 100%; justify-content: center; padding: .5rem; }
 #more[hidden] { display: none; }
 
 /* Широкий экран: настройки — колонка слева, диалог выводится в потоке. */
@@ -69,9 +189,6 @@ header {
     display: block;
     margin: 0;
     max-width: none;
-    border: 1px solid #8884;
-    border-radius: .5rem;
-    padding: .75rem;
   }
 
   #close-settings { display: none; }

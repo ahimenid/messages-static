@@ -26,8 +26,15 @@ var els = {
   logout: document.getElementById('logout')
 };
 
+var params = new URLSearchParams(location.search);
+
 // mock=1 — превью без бэкенда, данные из mock.json.
-var MOCK = new URLSearchParams(location.search).has('mock');
+var MOCK = params.has('mock');
+
+// theme=console|table — временно, на время выбора оформления.
+if (['console', 'table'].indexOf(params.get('theme')) !== -1) {
+  document.getElementById('theme').href = 'theme-' + params.get('theme') + '.css';
+}
 
 // Телефон определяем по типу указателя, а не по ширине окна:
 // узкое окно на десктопе — всё ещё десктоп.
@@ -139,6 +146,7 @@ function renderMessage(message) {
   source.textContent = message.source || 'unknown';
 
   var level = document.createElement('span');
+  level.className = 'level';
   level.textContent = message.level || 'info';
 
   var time = document.createElement('time');
