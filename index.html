@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Сообщения</title>
 <link rel="stylesheet" href="styles.css">
-<link id="theme" rel="stylesheet" href="">
+<script>
+// До отрисовки, чтобы не мигать чужой темой.
+var saved = localStorage.getItem('theme');
+if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+</script>
 </head>
 <body>
 
@@ -57,7 +61,16 @@
       <label><input id="unresolved" type="checkbox"> Только нерешённые</label>
     </p>
 
-    <p id="settings-scope">Настройки сохраняются для этой комнаты.</p>
+    <p>
+      <label for="theme">Тема</label>
+      <select id="theme">
+        <option value="system">Системная</option>
+        <option value="light">Светлая</option>
+        <option value="dark">Тёмная</option>
+      </select>
+    </p>
+
+    <p id="settings-scope">Фильтры сохраняются для этой комнаты, тема — для этого устройства.</p>
 
     <button id="close-settings" value="close" type="submit">Закрыть</button>
   </form>

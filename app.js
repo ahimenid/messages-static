@@ -31,10 +31,19 @@ var params = new URLSearchParams(location.search);
 // mock=1 — превью без бэкенда, данные из mock.json.
 var MOCK = params.has('mock');
 
-// theme=console|table — временно, на время выбора оформления.
-if (['console', 'table'].indexOf(params.get('theme')) !== -1) {
-  document.getElementById('theme').href = 'theme-' + params.get('theme') + '.css';
-}
+// Тема — настройка устройства, не профиля: телефон и десктоп независимы.
+var theme = document.getElementById('theme');
+theme.value = localStorage.getItem('theme') || 'system';
+
+theme.addEventListener('change', function () {
+  if (theme.value === 'system') {
+    localStorage.removeItem('theme');
+    delete document.documentElement.dataset.theme;
+  } else {
+    localStorage.setItem('theme', theme.value);
+    document.documentElement.dataset.theme = theme.value;
+  }
+});
 
 // Телефон определяем по типу указателя, а не по ширине окна:
 // узкое окно на десктопе — всё ещё десктоп.

@@ -14,16 +14,36 @@
   --radius: .625rem;
 }
 
+/* Тёмная палитра: по системе, пока пользователь не выбрал тему явно. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14161a;
-    --card: #1c1f25;
-    --ink: #e8eaee;
-    --muted: #9aa2b1;
-    --line: #2a2f38;
-    --accent: #6f9bff;
-    --info: #8b94a5;
+  :root:not([data-theme="light"]) {
+    --bg: #1b1d22;
+    --card: #23262c;
+    --ink: #e7e9ee;
+    --muted: #a3aab8;
+    --line: #353a43;
+    --accent: #7aa4ff;
+    --info: #949cab;
+    --warning: #e0a44a;
+    --error: #ea6a6a;
+    --ok: #4cbb7a;
   }
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1b1d22;
+  --card: #23262c;
+  --ink: #e7e9ee;
+  --muted: #a3aab8;
+  --line: #353a43;
+  --accent: #7aa4ff;
+  --info: #949cab;
+  --warning: #e0a44a;
+  --error: #ea6a6a;
+  --ok: #4cbb7a;
 }
 
 * { box-sizing: border-box; }
