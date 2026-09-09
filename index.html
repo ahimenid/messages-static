@@ -10,11 +10,7 @@
 
 <header>
   <h1>Сообщения</h1>
-  <form id="room-form">
-    <label for="room">Комната</label>
-    <input id="room" name="room" value="room-id" autocomplete="off">
-    <button type="submit">Открыть</button>
-  </form>
+  <button id="open-settings" type="button">Настройки</button>
   <p id="auth">
     <a id="login" href="#" hidden>Войти через Яндекс ID</a>
     <span id="user" hidden></span>
@@ -22,9 +18,41 @@
   </p>
 </header>
 
+<dialog id="settings">
+  <form method="dialog">
+    <h2>Настройки</h2>
+
+    <p>
+      <label for="room">Комната</label>
+      <select id="room"></select>
+    </p>
+
+    <p>
+      <label for="level">Показывать от уровня</label>
+      <select id="level">
+        <option value="trace">trace</option>
+        <option value="debug">debug</option>
+        <option value="info">info</option>
+        <option value="warning">warning</option>
+        <option value="error">error</option>
+        <option value="critical">critical</option>
+      </select>
+    </p>
+
+    <p>
+      <label><input id="unresolved" type="checkbox"> Только нерешённые</label>
+    </p>
+
+    <p id="settings-scope">Настройки сохраняются для этой комнаты.</p>
+
+    <button id="close-settings" value="close" type="submit">Закрыть</button>
+  </form>
+</dialog>
+
 <main>
   <p id="status" role="status">Загрузка…</p>
-  <ol id="messages" reversed></ol>
+  <ol id="messages"></ol>
+  <button id="more" type="button" hidden>Показать ещё</button>
 </main>
 
 <script src="app.js"></script>

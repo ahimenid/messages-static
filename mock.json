@@ -1,25 +1,91 @@
 {
+  "rooms": [
+    { "id": "infra", "title": "Инфраструктура" },
+    { "id": "billing", "title": "Биллинг" },
+    { "id": "jobs", "title": "Фоновые задачи" }
+  ],
+  "settings": {
+    "defaults": { "min_level": "info", "unresolved_only": false },
+    "rooms": { "jobs": { "min_level": "warning", "unresolved_only": false } },
+    "last_room": "infra"
+  },
+  "resolved": {
+    "infra": ["7c4b1f2e-2f2a-4a1c-9f0e-1d6b8a3c0011"],
+    "billing": [],
+    "jobs": []
+  },
   "messages": [
     {
-      "key": "room-id/2026-09-08T09:12:04Z-1f0c.json",
-      "timestamp": "2026-09-08T09:12:04Z",
+      "id": "7c4b1f2e-2f2a-4a1c-9f0e-1d6b8a3c0011",
+      "key": "public/infra/2026-09-06/2026-09-06T22:14:09Z-error-7c4b1f2e.json",
+      "room": "infra",
+      "timestamp": "2026-09-06T22:14:09Z",
+      "source": "healthcheck",
+      "level": "error",
+      "text": "api.example.com отвечает 502 третью минуту подряд."
+    },
+    {
+      "id": "b2d9a610-77c5-4a08-9b3f-2c1e5d7a0022",
+      "key": "public/infra/2026-09-07/2026-09-07T03:41:55Z-critical-b2d9a610.json",
+      "room": "infra",
+      "timestamp": "2026-09-07T03:41:55Z",
+      "source": "disk-watch",
+      "level": "critical",
+      "text": "На /var осталось 2% свободного места."
+    },
+    {
+      "id": "cf01e3a4-9b18-4d77-8a52-6f9c0b1d0033",
+      "key": "public/infra/2026-09-08/2026-09-08T08:02:31Z-info-cf01e3a4.json",
+      "room": "infra",
+      "timestamp": "2026-09-08T08:02:31Z",
       "source": "backup-agent",
       "level": "info",
       "text": "Ночной бэкап завершён: 4.2 ГБ, 00:41."
     },
     {
-      "key": "room-id/2026-09-08T11:03:47Z-8a21.json",
+      "id": "1a7f8c22-3e4d-42b9-9c10-5b2a7e6d0044",
+      "key": "public/infra/2026-09-08/2026-09-08T09:47:12Z-debug-1a7f8c22.json",
+      "room": "infra",
+      "timestamp": "2026-09-08T09:47:12Z",
+      "source": "healthcheck",
+      "level": "debug",
+      "text": "Проверка сертификатов: 14 доменов, ближайшее истечение через 47 дней."
+    },
+    {
+      "id": "e5c60d18-84a7-4f31-b6d2-90f3ac4e0055",
+      "key": "public/billing/2026-09-08/2026-09-08T11:03:47Z-warning-e5c60d18.json",
+      "room": "billing",
       "timestamp": "2026-09-08T11:03:47Z",
       "source": "billing",
       "level": "warning",
       "text": "Расход за сутки выше среднего на 38%."
     },
     {
-      "key": "room-id/2026-09-08T13:55:10Z-b7de.json",
+      "id": "4b18d9f0-5c2e-4a63-8e77-31d0b6a70066",
+      "key": "public/billing/2026-09-08/2026-09-08T12:20:05Z-info-4b18d9f0.json",
+      "room": "billing",
+      "timestamp": "2026-09-08T12:20:05Z",
+      "source": "billing",
+      "level": "info",
+      "text": "Счёт за август выставлен: 18 430 ₽."
+    },
+    {
+      "id": "9d3ac7b6-1f80-4e29-a5c4-7e2b8f150077",
+      "key": "public/jobs/2026-09-08/2026-09-08T13:55:10Z-warning-9d3ac7b6.json",
+      "room": "jobs",
       "timestamp": "2026-09-08T13:55:10Z",
-      "source": "healthcheck",
-      "level": "error",
-      "text": "api.example.com отвечает 502 третью минуту подряд."
+      "source": "etl",
+      "level": "warning",
+      "text": "Выгрузка отчётов заняла 42 минуты вместо обычных 8."
+    },
+    {
+      "id": "0f6e2b94-ac13-4d55-9207-8c4a1e3b0088",
+      "key": "public/jobs/2026-09-08/2026-09-08T13:58:41Z-trace-0f6e2b94.json",
+      "room": "jobs",
+      "timestamp": "2026-09-08T13:58:41Z",
+      "source": "etl",
+      "level": "trace",
+      "text": "Обработано 128 партиций, пропущено 0."
     }
   ]
 }

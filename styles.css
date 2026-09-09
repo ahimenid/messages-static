@@ -3,17 +3,28 @@
 body {
   margin: 0 auto;
   padding: 1rem;
-  max-width: 48rem;
+  max-width: 64rem;
   font: 16px/1.5 system-ui, sans-serif;
 }
 
-h1 { font-size: 1.25rem; margin: 0 0 .5rem; }
+h1 { font-size: 1.25rem; margin: 0; }
+h2 { font-size: 1rem; margin: 0 0 .5rem; }
 
-header { border-bottom: 1px solid #8884; padding-bottom: .75rem; }
+header {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #8884;
+  padding-bottom: .75rem;
+}
 
-#room-form { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+#auth { margin: 0; margin-left: auto; }
 
-#auth { margin: .75rem 0 0; }
+#settings p { margin: 0 0 .75rem; }
+#settings label { display: block; }
+#settings select { width: 100%; }
+#settings-scope { font-size: .8rem; color: #888; }
 
 #status { color: #888; }
 
@@ -26,10 +37,42 @@ header { border-bottom: 1px solid #8884; padding-bottom: .75rem; }
   margin-bottom: .5rem;
 }
 
-#messages li[data-level="error"] { border-color: #d33; }
 #messages li[data-level="warning"] { border-color: #e90; }
+#messages li[data-level="error"],
+#messages li[data-level="critical"] { border-color: #d33; }
+#messages li[data-resolved] { border-color: #2a2; }
 
-.meta { display: flex; gap: .5rem; font-size: .8rem; color: #888; }
+.meta { display: flex; gap: .5rem; align-items: baseline; font-size: .8rem; color: #888; }
 .meta .source { font-weight: 600; color: inherit; }
+.meta .resolved { margin-left: auto; color: #2a2; }
 
 .text { margin: .25rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+#more { display: block; width: 100%; padding: .5rem; }
+#more[hidden] { display: none; }
+
+/* Широкий экран: настройки — колонка слева, диалог выводится в потоке. */
+@media (min-width: 60rem) {
+  body {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  header { grid-column: 1 / -1; }
+
+  #open-settings { display: none; }
+
+  #settings {
+    position: static;
+    display: block;
+    margin: 0;
+    max-width: none;
+    border: 1px solid #8884;
+    border-radius: .5rem;
+    padding: .75rem;
+  }
+
+  #close-settings { display: none; }
+}
